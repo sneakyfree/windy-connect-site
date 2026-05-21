@@ -1,0 +1,49 @@
+name: Deploy to Cloudflare Pages
+
+# Auto-deploys windyconnect.com on every push to main.
+# Token: WindyProCIDeployToken (Cloudflare Pages: Edit, no IP filter).
+# Stored as repo secret CF_PAGES_TOKEN. Rotate calendar: token expires
+# 2026-10-31 per kit-army-config/ACCESS_LOCKBOX.md.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sanity check site files
+        run: |
+          test -f index.html
+          test -f privacy.html
+          test -f terms.html
+          test -f .well-known/skills/index.json
+          echo "Files present; size summary:"
+          ls -la *.html _headers
+          echo "Skills index version:"
+          python3 -c "import json; print('  ', json.load(open('.well-known/skills/index.json'))['items'][0]['latestVersion']['version'])"
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CF_PAGES_TOKEN }}
+          accountId: 193b347aedeaafe35de0b5a534b2d9aa
+          command: pages deploy . --project-name=windyconnect --branch=main --commit-dirty=true
+
+      - name: Smoke test
+        run: |
+          sleep 20
+          status=$(curl -sS -o /dev/null -w "%{http_code}" -L https://windyconnect.com)
+          echo "windyconnect.com: HTTP $status"
+          [ "$status" = "200" ] || exit 1
+          status=$(curl -sS -o /dev/null -w "%{http_code}" -L https://windyconnect.com/.well-known/skills/index.json)
+          echo ".well-known/skills/index.json: HTTP $status"
+          [ "$status" = "200" ] || exit 1
