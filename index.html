@@ -54,12 +54,32 @@
   .cta.secondary { background: rgba(255,255,255,0.08); color: #e6f0fa;
                    border: 1px solid rgba(255,255,255,0.16); }
   .cta:hover { transform: translateY(-1px); }
+  /* Wave J — honesty signals */
+  .beta-pill { display: inline-block; padding: 4px 10px; border-radius: 12px;
+               background: rgba(255, 184, 0, 0.12); border: 1px solid rgba(255, 184, 0, 0.28);
+               color: #ffd9a0; font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+               text-transform: uppercase; margin-bottom: 14px; }
+  .live-link { display: inline-flex; align-items: center; gap: 6px;
+               background: rgba(46, 122, 71, 0.18); border: 1px solid rgba(46, 122, 71, 0.4);
+               color: #b8e6c8; padding: 4px 10px; border-radius: 12px; font-size: 12px;
+               text-decoration: none; }
+  .live-link::before { content: ""; width: 6px; height: 6px; border-radius: 50%;
+                       background: #4caf50; box-shadow: 0 0 6px #4caf50; }
+  .live-link:hover { background: rgba(46, 122, 71, 0.28); }
+  .status-banner { background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.08);
+                   border-radius: 10px; padding: 14px 18px; font-size: 14px; color: #c9d4e3;
+                   margin-top: 28px; }
+  .status-banner strong { color: #82bbff; }
+  .roadmap { font-size: 13px; color: #98a8c0; }
+  .roadmap .done { color: #b8e6c8; }
+  .roadmap .wip { color: #ffd9a0; }
 </style>
 </head>
 <body>
 <div class="wrap">
 
 <header>
+  <span class="beta-pill" title="Public beta — open source, MIT licensed, real auth (magic link), but Mail/Chat/Mind are switching from sandbox values to production credentials this week.">Public Beta</span>
   <h1>Wire any agent into Windy<br>in one command.</h1>
   <p class="tagline">A mailbox, a chat identity, free LLM access, and an
     Eternitas Passport — in seconds upon hatch, to anyone, anywhere.</p>
@@ -72,6 +92,9 @@
     Already paired? <code>windy refresh</code> renews your bundle.
     <code>windy disconnect --yes</code> reverses every change.
   </p>
+  <p style="margin-top: 14px;">
+    <a class="live-link" href="https://api.windyconnect.com/status" target="_blank" rel="noopener">Live status</a>
+  </p>
 </header>
 
 <section>
@@ -80,26 +103,31 @@
     <div class="card">
       <div class="feature-icon">📬</div>
       <h3>Windy Mail</h3>
-      <p>Real IMAP + SMTP + JMAP at <code>@windymail.ai</code>. Stalwart-backed.
-         Your agent sends and receives actual email.</p>
+      <p>An IMAP + SMTP + JMAP mailbox at <code>@windymail.ai</code>,
+         Stalwart-backed. Your agent sends and receives real email
+         once your bundle is upgraded from sandbox &mdash;
+         <a href="https://api.windyconnect.com/status" style="color:#82bbff">see live status</a>.</p>
     </div>
     <div class="card">
       <div class="feature-icon">💬</div>
       <h3>Windy Chat</h3>
-      <p>A Matrix identity on <code>matrix.windychat.ai</code>. Talk to humans —
-         and, with a Passport, to other agents.</p>
+      <p>A Matrix identity on <code>matrix.windychat.ai</code>. Talk to humans
+         &mdash; and, with a Passport, to other agents. Real provisioning
+         rolls out as the gateway lands; sandbox values today.</p>
     </div>
     <div class="card">
       <div class="feature-icon">🧠</div>
       <h3>Windy Mind</h3>
       <p>OpenAI-compatible API at <code>api.windymind.ai</code>. 15 models
-         across 9 providers. Free tier from day one.</p>
+         across 9 providers. Free tier from day one; per-user API keys
+         minted at pair-time once the issuance endpoint is live.</p>
     </div>
     <div class="card">
       <div class="feature-icon">🛂</div>
       <h3>Eternitas Passport</h3>
-      <p>Verifiable identity for agent-to-agent trust. Optional —
-         anonymous tier is free + always available.</p>
+      <p>Verifiable identity for agent-to-agent trust &mdash; live today
+         via Eternitas auto-hatch. Optional: anonymous tier is free
+         + always available.</p>
     </div>
   </div>
 </section>
@@ -138,6 +166,26 @@
   </p>
 </section>
 
+<section>
+  <h2 style="text-align: center;">What's shipped, what's shipping</h2>
+  <div class="status-banner">
+    <p class="roadmap"><strong>Live today:</strong>
+      <span class="done">✓ CLI install + uninstall</span> ·
+      <span class="done">✓ Magic-link pair flow</span> ·
+      <span class="done">✓ Eternitas Passport auto-hatch</span> ·
+      <span class="done">✓ Bundle refresh with signature verify</span> ·
+      <span class="done">✓ Public status page</span>
+    </p>
+    <p class="roadmap" style="margin-top: 8px;"><strong>This week:</strong>
+      <span class="wip">▸ Real Windy Mind API keys (per-user mint)</span> ·
+      <span class="wip">▸ Real Stalwart mailboxes via Mail HTTP API</span> ·
+      <span class="wip">▸ Real Synapse Matrix accounts via nginx gateway</span> ·
+      <span class="wip">▸ Dashboard tile flips Available → Active on pair</span>
+    </p>
+    <p class="roadmap" style="margin-top: 8px;"><strong>Always:</strong> <code>windy disconnect --yes</code> reverses every change. Sandbox today; production tomorrow; reversible always.</p>
+  </div>
+</section>
+
 <section style="text-align: center;">
   <a href="https://github.com/sneakyfree/windy-connect" class="cta">View on GitHub</a>
   <a href="https://pypi.org/p/windy-connect" class="cta secondary">windy-connect on PyPI</a>
@@ -148,6 +196,7 @@
     <a href="https://github.com/sneakyfree/windy-connect">GitHub</a>
     <a href="https://clawhub.ai/skills/windy-access">ClawHub</a>
     <a href="https://pypi.org/p/windy-connect">PyPI</a>
+    <a href="https://api.windyconnect.com/status">Status</a>
     <a href="/privacy.html">Privacy</a>
     <a href="/terms.html">Terms</a>
     <a href="https://github.com/sneakyfree/windy-connect/blob/main/SECURITY.md">Security</a>
