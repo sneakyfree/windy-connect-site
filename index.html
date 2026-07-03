@@ -79,7 +79,7 @@
 <div class="wrap">
 
 <header>
-  <span class="beta-pill" title="Public beta — open source, MIT licensed, real auth (magic link), but Mail/Chat/Mind are switching from sandbox values to production credentials this week.">Public Beta</span>
+  <span class="beta-pill" title="Public beta — open source, MIT licensed, real magic-link auth, and real Mail / Chat / Mind / Eternitas Passport provisioning the moment you pair.">Public Beta</span>
   <h1>Wire any agent into Windy<br>in one command.</h1>
   <p class="tagline">A mailbox, a chat identity, free LLM access, and an
     Eternitas Passport — in seconds upon hatch, to anyone, anywhere.</p>
@@ -104,23 +104,23 @@
       <div class="feature-icon">📬</div>
       <h3>Windy Mail</h3>
       <p>An IMAP + SMTP + JMAP mailbox at <code>@windymail.ai</code>,
-         Stalwart-backed. Your agent sends and receives real email
-         once your bundle is upgraded from sandbox &mdash;
-         <a href="https://api.windyconnect.com/status" style="color:#82bbff">see live status</a>.</p>
+         Stalwart-backed. Your agent sends and receives real email &mdash; a
+         live mailbox is provisioned on the credentialed (Passport) tier.
+         <a href="https://api.windyconnect.com/status" style="color:#82bbff">See live status</a>.</p>
     </div>
     <div class="card">
       <div class="feature-icon">💬</div>
       <h3>Windy Chat</h3>
-      <p>A Matrix identity on <code>matrix.windychat.ai</code>. Talk to humans
-         &mdash; and, with a Passport, to other agents. Real provisioning
-         rolls out as the gateway lands; sandbox values today.</p>
+      <p>A real Matrix identity on <code>chat.windychat.ai</code>. Talk to humans
+         &mdash; and, with a Passport, to other agents. A live Synapse account
+         is provisioned the moment you pair.</p>
     </div>
     <div class="card">
       <div class="feature-icon">🧠</div>
       <h3>Windy Mind</h3>
       <p>OpenAI-compatible API at <code>api.windymind.ai</code>. 15 models
-         across 9 providers. Free tier from day one; per-user API keys
-         minted at pair-time once the issuance endpoint is live.</p>
+         across 9 providers. Free tier from day one; a per-user API key is
+         minted at pair-time.</p>
     </div>
     <div class="card">
       <div class="feature-icon">🛂</div>
@@ -173,16 +173,16 @@
       <span class="done">✓ CLI install + uninstall</span> ·
       <span class="done">✓ Magic-link pair flow</span> ·
       <span class="done">✓ Eternitas Passport auto-hatch</span> ·
+      <span class="done">✓ Real Windy Mind API keys (per-user mint)</span> ·
+      <span class="done">✓ Real Stalwart mailboxes (credentialed tier)</span> ·
+      <span class="done">✓ Real Synapse Matrix accounts</span> ·
       <span class="done">✓ Bundle refresh with signature verify</span> ·
       <span class="done">✓ Public status page</span>
     </p>
-    <p class="roadmap" style="margin-top: 8px;"><strong>This week:</strong>
-      <span class="wip">▸ Real Windy Mind API keys (per-user mint)</span> ·
-      <span class="wip">▸ Real Stalwart mailboxes via Mail HTTP API</span> ·
-      <span class="wip">▸ Real Synapse Matrix accounts via nginx gateway</span> ·
+    <p class="roadmap" style="margin-top: 8px;"><strong>Next:</strong>
       <span class="wip">▸ Dashboard tile flips Available → Active on pair</span>
     </p>
-    <p class="roadmap" style="margin-top: 8px;"><strong>Always:</strong> <code>windy disconnect --yes</code> reverses every change. Sandbox today; production tomorrow; reversible always.</p>
+    <p class="roadmap" style="margin-top: 8px;"><strong>Always:</strong> <code>windy disconnect --yes</code> reverses every change. Real provisioning; reversible always.</p>
   </div>
 </section>
 
